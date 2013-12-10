@@ -21,7 +21,7 @@ class Usuario extends AbstractController
 
         $this->entity = '\Application\Entity\Usuario';
         $this->service = 'application.usuario';
-        $this->editView = 'admin/usuario/novo';
+        $this->editView = 'application/usuario/novo';
 
         $this->messages['error']['unique'] = 'Já existe um usuário utilizando este email';
     }
@@ -42,7 +42,7 @@ class Usuario extends AbstractController
             $result = $auth->authenticate();
 
             if ($result->isValid()) {
-                return $this->redirect()->toRoute('admin');
+                return $this->redirect()->toRoute('index');
             }
 
             $this->error('Usuário ou senha incorretos!');
@@ -56,7 +56,7 @@ class Usuario extends AbstractController
     {
         $auth = $this->getService('authservice');
         $auth->clearIdentity();
-        return $this->redirect()->toRoute('admin/login');
+        return $this->redirect()->toRoute('login');
     }
 
 }

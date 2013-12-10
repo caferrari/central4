@@ -18,7 +18,7 @@ class Orgao extends AbstractController
 
         $this->entity = '\Application\Entity\Orgao';
         $this->service = 'application.orgao';
-        $this->editView = 'admin/orgao/novo';
+        $this->editView = 'application/orgao/novo';
     }
 
 }
