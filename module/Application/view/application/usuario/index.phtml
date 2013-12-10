@@ -1,0 +1,25 @@
+<div class="btn-toolbar">
+    <a href="<?php echo $this->url('crud', array('controller' => 'usuario', 'action' => 'novo')) ?>" class="btn btn-primary">Adicionar</a>
+</div>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th width="120">Ações</th>
+        </tr>
+    </thead>
+    <?php foreach ($data as $user): ?>
+    <tr>
+        <td><?= $user->nome ?></td>
+        <td><?= $user->email ?></td>
+        <td class="text-right">
+            <a href="<?php echo $this->url('crud', array('controller' => 'usuario', 'action' => 'editar', 'id' => $user->id)) ?>" class="btn btn-small" rel="tooltip" title="Editar"><i class="icon-edit"></i></a>
+            <a href="<?php echo $this->url('crud', array('controller' => 'usuario', 'action' => 'excluir', 'id' => $user->id)) ?>" class="btn btn-small btn-danger" rel="tooltip" title="Excluir"><i class="icon-remove"></i></a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<?= $this->paginationControl($this->data, 'Sliding', 'paginator') ?>

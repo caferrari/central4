@@ -1,0 +1,106 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Central 4')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/font-awesome/css/font-awesome.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                      ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+                                      ->prependFile($this->basePath() . '/js/jquery-1.10.0.min.js')
+                                      ->appendFile($this->basePath() . '/js/scripts.js') ?>
+
+    </head>
+    <body>
+
+        <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="<?php echo $this->url('home') ?>">Central 4</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <?php
+                              echo $this->navigation('navigation')
+                              ->menu()
+                              ->setMinDepth(0)
+                              ->setMaxDepth(0)
+                              ->setUlClass('nav')
+                              ->setPartial(array('application/navigation/topnav.phtml', 'Admin'));
+
+                            ?>
+                        </ul>
+
+                        <ul class="nav pull-right">
+                            <li>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-fixed-width icon-cog"></i> Nome Aqui <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="icon-cog icon-fixed-width "></i> Configurações</a></li>
+                                    <li><a href="#"><i class="icon-user icon-fixed-width "></i> Dados Pessoais</a></li>
+                                    <li><a href="#"><i class="icon-key icon-fixed-width "></i> Alterar Senha</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="<?= $this->url('logout') ?>"><i class="icon-signout icon-fixed-width "></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+
+            <?php $partial = array('application/navigation/breadcrumbs.phtml', 'default') ?>
+            <?php $this->navigation('navigation')->breadcrumbs()->setPartial($partial) ?>
+            <?php echo $this->navigation('navigation')->breadcrumbs()->render() ?>
+
+            <?php
+            $navigation = $this->navigation('navigation');
+            $active = $navigation->findActive($navigation->getContainer());
+
+            if ($active):
+                $page = $active['page'];
+
+            ?>
+            <h2><?= $page->getLabel() ?></h2>
+            <hr />
+            <?php endif; ?>
+
+            <div class="row-fluid">
+
+                <div class="span8">
+
+                    <?php echo $this->flashMessage(); ?>
+
+                    <?php echo $this->content; ?>
+
+                </div>
+
+                <div class="span4 alert alert-warning">
+                    <h4>Instruções</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, eius, iure repellat ad officiis autem itaque minus consequuntur. Dolore, repudiandae, magnam praesentium quis atque quidem deserunt unde corrupti eveniet incidunt?</p>
+                </div>
+
+            </div>
+            <hr>
+            <footer>
+                <p>&copy; <?= date('Y') ?> by Secretaria da Comunicação do Tocantins</p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<?php $count = 0; ?>
+<?php foreach ($this->container as $page): ?>
+    <?php //var_dump($page); exit;?>
+    <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+    <?php // when using partials we need to manually check for ACL conditions ?>
+    <?php if( ! $page->isVisible() || !$this->navigation()->accept($page)) continue; ?>
+    <?php $hasChildren = $page->hasPages() ?>
+    <?php if( ! $hasChildren): ?>
+
+        <li <?= $page->isActive() ? 'class="active"' : '' ?>><a href="<?php echo $page->getHref() ?>"><?php echo $page->getLabel() ?></a></li>
+    <?php else: ?>
+
+        <li class="dropdown <?= $page->isActive() ? 'active' : '' ?>">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $page->getLabel() ?><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            <?php foreach($page->getPages() as $child): ?>
+
+                <?php
+
+                $icon = '';
+                if (in_array('icon', array_keys($child->getCustomProperties()))) {
+                    $icon = "<i class=\"icon-fixed-width " . $child->getCustomProperties()['icon'] . "\"></i> ";
+                }
+
+                ?>
+
+                <?php // when using partials we need to manually check for ACL conditions ?>
+                <?php if( ! $child->isVisible() || !$this->navigation()->accept($child)) continue; ?>
+
+                <li <?= $child->isActive() ? 'class="active"' : '' ?>><a href="<?php echo $child->getHref() ?>"><?php echo $icon . $child->getLabel() ?></a></li>
+            <?php endforeach ?>
+
+            </ul>
+        </li>
+
+    <?php endif ?>
+    <?php $count++; ?>
+<?php endforeach ?>

@@ -1,0 +1,52 @@
+{
+    "name": "secom-tocantins/central4",
+    "description": "CMS",
+    "license": "BSD-3-Clause",
+    "keywords": [],
+    "homepage": "http://web.secom.to.gov.br",
+    "authors": [
+        {
+            "name": "Carlos André Ferrari",
+            "email": "caferrari@gmail.com"
+        },
+        {
+            "name": "Luan Almeida",
+            "email": "luanlmd@gmail.com"
+        },
+        {
+            "name": "Juliane Ribeiro",
+            "email": "julianerbr@gmail.com"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zend-http": ">2.2",
+        "zendframework/zend-mvc": ">2.2",
+        "zendframework/zend-view": ">2.2",
+        "zendframework/zend-config": ">2.2",
+        "zendframework/zend-cache": ">2.2",
+        "zendframework/zend-i18n": ">2.2",
+        "zendframework/zend-loader": ">2.2",
+        "zendframework/zend-console": ">2.2",
+        "zendframework/zend-authentication": ">2.2",
+        "zendframework/zend-session": ">2.2",
+        "zendframework/zend-crypt" : ">2.2",
+        "zendframework/zend-math": ">2.2",
+        "zendframework/zend-json": ">2.2",
+        "zendframework/zend-serializer": ">2.2",
+        "zendframework/zend-navigation": ">2.2",
+        "zendframework/zend-permissions-acl": ">2.2",
+        "zendframework/zend-di": ">2.2",
+        "doctrine/doctrine-orm-module": "*",
+        "hounddog/doctrine-data-fixture-module": "dev-master"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "dev-master",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "config" : {
+        "process-timeout" : 4000
+    }
+}
+

@@ -1,0 +1,24 @@
+<?php $container = $this->navigation()->breadcrumbs()  ?>
+<?php $navigation = $container->getContainer() ?>
+
+<ul class="breadcrumb pull-right">
+    <li><a href="<?php echo $this->url('home') ?>">Home</a> <span class="divider">/</span></li>
+    <?php $active = $container->findActive($navigation) ?>
+    <?php foreach($this->pages as $page): ?>
+        <?php /* @var $page \Zend\Navigation\Page\Mvc */ ?>
+        <?php if( ! $page->isActive()): ?>
+            <li class="active">
+                <?php if ($page->getHref() == '#'): ?>
+                <?php echo $page->getLabel() ?>
+                <?php else: ?>
+                <a href="<?php echo $page->getHref() ?>"><?php echo $page->getLabel() ?></a>
+                <?php endif; ?>
+                <span class="divider">/</span>
+            </li>
+        <?php else: ?>
+            <li class="active">
+                <?php echo $page->getLabel() ?>
+            </li>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>

@@ -1,0 +1,45 @@
+<?php
+
+$info = parse_url($_SERVER['REQUEST_URI']);
+
+$uri = $info['path'];
+parse_str( (isset($info['query']) ? $info['query'] : '') , $query);
+
+$url = function($page) use ($uri, $query) {
+    $page = $page['page'];
+    if ($page == 1) {
+        unset($query['page']);
+        if (!$query) return $uri;
+    } else {
+        $query['page'] = $page;
+    }
+    return $uri . '?' .  http_build_query($query, '', '&amp;');
+};
+?>
+
+<?php if ($this->pageCount > 1): ?>
+<div class="pagination pagination-centered">
+    <ul>
+
+    <?php if (isset($this->previous)): ?>
+      <li><a href="<?php echo $url(array('page' => $this->previous)); ?>">«</a></li>
+    <?php else: ?>
+      <li class="disabled"><a href="#">«</a></li>
+    <?php endif; ?>
+
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <?php if ($page != $this->current): ?>
+        <li><a href="<?php echo $url(array('page' => $page)); ?>"><?= $page ?></a></li>
+      <?php else: ?>
+        <li class="active"><a href="#"><?php echo $page; ?></a></li>
+      <?php endif; ?>
+    <?php endforeach; ?>
+
+    <?php if (isset($this->next)): ?>
+      <li><a href="<?php echo $url(array('page' => $this->next)); ?>">»</a></li>
+    <?php else: ?>
+      <li class="disabled"><a href="#">»</a></li>
+    <?php endif; ?>
+    </ul>
+</div>
+<?php endif; ?>

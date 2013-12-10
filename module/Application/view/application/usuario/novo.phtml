@@ -1,0 +1,29 @@
+<?php
+$form->prepare();
+?>
+
+<?= $this->form()->openTag($form); ?>
+
+<?php if (!$form->get('id')->getValue()): ?>
+<legend>Adicionar Usuário</legend>
+<?php else: ?>
+<legend>Editar Usuário</legend>
+<?php endif; ?>
+
+<?= $this->flashMessage(); ?>
+
+<?= $this->formHidden($form->get('id')); ?>
+<?= $this->bootstrapRow($form->get('nome')); ?>
+<?= $this->bootstrapRow($form->get('email')); ?>
+<?= $this->bootstrapRow($form->get('senha')); ?>
+<?= $this->bootstrapRow($form->get('tipo')); ?>
+
+<?= $this->formHidden($form->get('security')); ?>
+
+<div class="control-group">
+    <div class="controls">
+    <button class="btn">Salvar</button> ou <a href="">Voltar</a>
+    </div>
+</div>
+
+<?= $this->form()->closeTag(); ?>
