@@ -19,7 +19,7 @@ help-default help:
 	@echo ""
 
 test:
-	vendor/bin/phpunit --configuration module/Application/tests/phpunit.xml --coverage-text
+	vendor/bin/phpunit --configuration tests/phpunit.xml
 
 cover:
 	vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-html ./coverage

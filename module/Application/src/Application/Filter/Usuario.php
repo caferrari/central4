@@ -2,11 +2,9 @@
 
 namespace Application\Filter;
 
-use Zend\InputFilter\InputFilter,
-    Zend\ServiceManager\ServiceManagerAwareInterface,
-    Zend\ServiceManager\ServiceManager;
+use Zend\InputFilter\InputFilter;
 
-class Usuario extends InputFilter implements ServiceManagerAwareInterface
+class Usuario extends InputFilter
 {
 
     public function __construct()
@@ -103,39 +101,6 @@ class Usuario extends InputFilter implements ServiceManagerAwareInterface
             )
         );
 
-        $this->add(
-            array(
-                'name' => 'tipo',
-                'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim')
-                ),
-                'validators' => array(
-                    array(
-                        'name' => 'NotEmpty',
-                        'options' => array(
-                            'messages' => array('isEmpty' => 'Tipo não deve estar em branco')
-                        )
-                    ),
-                    array(
-                        'name' => 'InArray',
-                        'options' => array(
-                            'messages' => array(
-                                'notInArray' => 'Tipo inválido'
-                            ),
-                            'haystack' => array('admin', 'admin-orgao', 'revisor', 'atendente')
-                        )
-                    )
-                )
-            )
-        );
-
-    }
-
-    public function setServiceManager(ServiceManager $serviceManager) {
-        //die('hmmm');
-        $this->sm = $serviceManager;
     }
 
 }

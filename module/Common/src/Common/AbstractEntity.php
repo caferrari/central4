@@ -61,10 +61,21 @@ abstract class AbstractEntity
     public function validate()
     {
         if (!$this->isValid()) {
-            throw new \RunTimeException($this->getExceptionMessage());
+            throw new \InvalidArgumentException($this->getInvalidMessages());
         }
 
         return true;
+    }
+
+    private function getInvalidMessages() {
+        $messages = array();
+        foreach ($this->getInputFilter()->getMessages() as $field) {
+            foreach ($field as $message) {
+                $messages[] = $message;
+            }
+        }
+
+        return implode(';', $messages);
     }
 
     public function getInputFilter()
@@ -72,7 +83,7 @@ abstract class AbstractEntity
         if (null == $this->inputFilter) {
             $filter = $this->getInputFilterClassName();
             if (!class_exists($filter)) {
-                throw new RuntimeException("Filter \"{$filter}\" not found");
+                throw new \RuntimeException("Filter \"{$filter}\" not found");
             }
             $this->inputFilter = new $filter();
         }

@@ -24,10 +24,9 @@ class Usuario extends AbstractEntity
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Entity\Orgao")
-     * @ORM\JoinColumn(name="orgao_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="usuarios")
      */
-    protected $orgao;
+    private $sites;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -40,9 +39,14 @@ class Usuario extends AbstractEntity
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    protected $tipo;
+    protected $isAdmin = false;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $isRevisor = false;
 
     /**
      * @ORM\Column(type="boolean")
@@ -58,6 +62,15 @@ class Usuario extends AbstractEntity
      * @ORM\Column(type="string", length=40)
      */
     protected $salt;
+
+    public function __construct($data) {
+        $this->sites = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct($data);
+    }
+
+    public function addSite(\Application\Entity\Site $site) {
+        $this->sites->add($site);
+    }
 
     /**
      * @ORM\PreUpdate
@@ -114,13 +127,4 @@ class Usuario extends AbstractEntity
         $this->salt = sha1(uniqid(mt_rand(), true));
     }
 
-    public function isAdmin()
-    {
-        return 'b' === $this->tipo || $this->isMasterAdmin();
-    }
-
-    public function isMasterAdmin()
-    {
-        return 'a' === $this->tipo;
-    }
 }
