@@ -23,7 +23,7 @@ class Site extends AbstractEntity
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="sites")
+     * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="sites", orphanRemoval=true)
      */
     protected $usuarios;
 
@@ -50,11 +50,6 @@ class Site extends AbstractEntity
     public function validate()
     {
         parent::validate();
-    }
-
-    public function addUsuario(\Application\Entity\Usuario $usuario)
-    {
-        $this->usuarios->add($usuario);
     }
 
 }

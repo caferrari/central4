@@ -2,9 +2,8 @@
 
 namespace Application\Entity;
 
-use Doctrine\ORM\Mapping as ORM,
-    Common\AbstractEntity,
-    Zend\Crypt\Password\Bcrypt;
+use Doctrine\ORM\Mapping as ORM;
+use Common\AbstractEntity;
 
 /**
  * @ORM\Table(name="usuario_site")

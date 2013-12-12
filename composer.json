@@ -21,6 +21,9 @@
     "minimum-stability" : "dev",
     "require": {
         "php": ">=5.4",
+        "ext-intl": "*",
+        "ext-pdo": "*",
+        "ext-pgsql": "*",
         "zendframework/zend-http": ">2.2",
         "zendframework/zend-mvc": ">2.2",
         "zendframework/zend-view": ">2.2",
@@ -45,7 +48,8 @@
         "zendframework/zend-developer-tools": "dev-master",
         "phpunit/phpunit": "3.7.*",
         "caferrari/caf-test": "*",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+        "ext-sqlite": "*",
     },
     "config" : {
         "process-timeout" : 4000

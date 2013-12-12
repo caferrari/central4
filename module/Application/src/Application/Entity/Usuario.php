@@ -24,9 +24,9 @@ class Usuario extends AbstractEntity
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="usuarios")
+     * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="usuarios", orphanRemoval=true)
      */
-    private $sites;
+    protected $sites;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -69,11 +69,6 @@ class Usuario extends AbstractEntity
         parent::__construct($data);
     }
 
-    public function addSite(\Application\Entity\Site $site)
-    {
-        $this->sites->add($site);
-    }
-
     /**
      * @ORM\PreUpdate
      * @ORM\PrePersist
@@ -89,7 +84,6 @@ class Usuario extends AbstractEntity
             $if = $this->getInputFilter();
             $if->get('senha')->setAllowEmpty(false);
             $if->get('senha')->setRequired(true);
-
             parent::validate();
         }
 

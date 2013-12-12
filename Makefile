@@ -32,7 +32,6 @@ server:
 setup:
 	curl -sS https://getcomposer.org/installer | php
 	php composer.phar install --dev --prefer-dist
-	-psql -h 127.0.0.1 -c 'create database central4_test;' -U postgres
 	-psql -h 127.0.0.1 -c 'create database central4_dev;' -U postgres
 	cp config/autoload/doctrine_orm.local.php.dist config/autoload/doctrine_orm.local.php
 	mkdir -p data/DoctrineORMModule/Proxy
