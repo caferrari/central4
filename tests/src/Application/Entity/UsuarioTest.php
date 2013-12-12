@@ -2,9 +2,9 @@
 
 namespace Application\Entity;
 
-use CafTest\ModelTestCase;
+use CafTest\TestCase\Entity as EntityTestCase;
 
-class UsuarioTest extends ModelTestCase
+class UsuarioTest extends EntityTestCase
 {
 
     /**
