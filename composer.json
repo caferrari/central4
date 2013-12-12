@@ -48,8 +48,7 @@
         "zendframework/zend-developer-tools": "dev-master",
         "phpunit/phpunit": "3.7.*",
         "caferrari/caf-test": "*",
-        "satooshi/php-coveralls": "dev-master",
-        "ext-sqlite": "*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "config" : {
         "process-timeout" : 4000
