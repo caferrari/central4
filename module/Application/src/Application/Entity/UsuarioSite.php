@@ -28,7 +28,7 @@ class UsuarioSite extends AbstractEntity
     protected $site;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", name="is_admin", nullable=false)
      */
     protected $isAdmin = false;
 

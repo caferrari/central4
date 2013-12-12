@@ -2,7 +2,7 @@
 
 namespace Common\Controller;
 
-trait IndexAction
+trait ExcluirAction
 {
 
     public function excluirAction()
@@ -10,9 +10,9 @@ trait IndexAction
         $id = $this->getRequest()->getQuery('id', false);
         if (is_numeric($id)) {
             $this->getService()->delete($id);
-            $this->success($this->getMessage('delete', 'success'));
+            $this->success('delete');
         } else {
-            $this->success($this->getMessage('delete', 'error'));
+            $this->error('delete');
         }
 
         return $this->redirect()->toRoute('crud', array('controller' => $this->controller));

@@ -9,25 +9,25 @@ trait NovoAction
     {
         $form = $this->getForm();
         $request = $this->getRequest();
+
         if ($request->isPost()) {
-            $form->setData($request->getPost());
-
             try {
-                $form->validate();
-
-                $this->getService()->insert($form->getData());
-                $this->success($this->getMessage('insert', 'success'));
+                $this->getService()->insert($request->getPost()->toArray());
+                $this->success('insert');
                 $this->redirect()->toRoute('crud', array('controller' => $this->controller));
             } catch(\Doctrine\DBAL\DBALException $e) {
                 $pdoe = $e->getPrevious();
                 if (23505 == $pdoe->getCode()) {
-                    $this->error($this->getMessage('unique', 'error'));
+                    $this->error('unique');
                 } else {
-                    throw $e;
+                    $this->error($e->getMessage);
                 }
             } catch (\Exception $e) {
-                $this->error($e->getMessage());
+                $this->error('insert');
             }
+
+            $form->setData($request->getPost());
+            $form->isValid();
         }
 
         return array('form' => $form);

@@ -14,6 +14,7 @@ class Usuario extends AbstractController
     use \Common\Controller\IndexAction;
     use \Common\Controller\NovoAction;
     use \Common\Controller\EditarAction;
+    use \Common\Controller\ExcluirAction;
 
     public function __construct()
     {

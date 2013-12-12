@@ -16,7 +16,7 @@ trait EditarAction
             try {
                 $form->validate();
                 $this->getService()->update($form->getData());
-                $this->success($this->getMessage('edit', 'success'));
+                $this->success('edit');
                 return $this->redirect()->toRoute('crud', array('controller' => $this->controller));
             } catch (\Exception $e) {
                 $this->error($e->getMessage());
@@ -32,7 +32,7 @@ trait EditarAction
             return $this->render($this->editView);
         }
 
-        $this->error('id must be numeric');
+        $this->error('id');
         return $this->redirect()->toRoute('crud', array('controller' => $this->controller));
     }
 

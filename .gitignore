@@ -12,5 +12,6 @@ composer.lock
 composer.phar
 vendor
 data/
+build/*
 coverage
 !module/Application/tests/vendor

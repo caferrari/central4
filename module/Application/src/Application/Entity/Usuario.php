@@ -39,12 +39,12 @@ class Usuario extends AbstractEntity
     protected $email;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", name="is_admin", nullable=false)
      */
     protected $isAdmin = false;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", name="is_revisor", nullable=false)
      */
     protected $isRevisor = false;
 
@@ -96,14 +96,14 @@ class Usuario extends AbstractEntity
 
     public function verify($senha)
     {
-        return $this->getBcrypt()->verify($this->generatePassword($senha), $this->senha);
+        return (new Bcrypt)->verify($this->generatePassword($senha), $this->senha);
     }
 
     public function getBcrypt()
     {
         return new Bcrypt(
             array(
-                'salt' => $this->getSalt(),
+                'salt' => $this->generateSalt(),
                 'cost' => 14
             )
         );
@@ -122,9 +122,13 @@ class Usuario extends AbstractEntity
         return $this->salt;
     }
 
-    public function regenerateSalt()
+    public function generateSalt()
     {
-        $this->salt = sha1(uniqid(mt_rand(), true));
+        return sha1(uniqid(mt_rand(), true));
+    }
+
+    public function regenerateSalt() {
+        return $this->salt = $this->generateSalt();
     }
 
 }

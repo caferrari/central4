@@ -23,15 +23,6 @@ abstract class AbstractForm extends Form
         $this->setInputFilter($filter);
     }
 
-    public function validate()
-    {
-        if (!$this->isValid()) {
-            throw new \RunTimeException($this->getExceptionMessage());
-        }
-
-        return true;
-    }
-
     private function getExceptionMessage()
     {
         $errors  = $this->getInputFilter()->getMessages();

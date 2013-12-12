@@ -15,7 +15,6 @@ class BootstrapRow extends FormRow
 
     public function render(ElementInterface $element)
     {
-
         $this->prepend = array();
         $this->append = array();
 
@@ -25,10 +24,6 @@ class BootstrapRow extends FormRow
 
     public function __toString()
     {
-
-
-
-
         $element = $this->element;
 
         $elementErrorsHelper = $this->getElementErrorsHelper();

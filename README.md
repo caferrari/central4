@@ -1,4 +1,5 @@
 # Central 4
+[![Build Status](https://travis-ci.org/secom-tocantins/central4.png?branch=develop)](https://travis-ci.org/secom-tocantins/central4) [![Coverage Status](https://coveralls.io/repos/secom-tocantins/central4/badge.png?branch=develop)](https://coveralls.io/r/secom-tocantins/central4?branch=develop)
 
 CMS do Governo do Tocantins
 

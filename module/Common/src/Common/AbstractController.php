@@ -15,20 +15,6 @@ abstract class AbstractController extends AbstractActionController
     protected $form;
     protected $controller;
 
-    protected $messages = array(
-        'success' => array(
-            'insert' => 'Success Insert message not defined',
-            'edit' => 'Success Edit message not defined',
-            'delete' => 'Success Delete message not defined'
-        ),
-        'error' => array(
-            'insert' => 'Insert Error message not defined',
-            'edit' => 'Edit Error message not defined',
-            'delete' => 'Delete Error message not defined',
-            'unique' => 'Unique Error message not defined'
-        )
-    );
-
     public function __construct()
     {
         $this->loadClassNames();
@@ -113,19 +99,43 @@ abstract class AbstractController extends AbstractActionController
         return $result;
     }
 
-    public function getMessage($action, $type)
-    {
-        return $this->messages[$type][$action];
+    public function getMessages() {
+        return array(
+            'success' => array(
+                'insert' => 'Success Insert message not defined',
+                'edit' => 'Success Edit message not defined',
+                'delete' => 'Success Delete message not defined'
+            ),
+            'error' => array(
+                'insert' => 'Insert Error message not defined',
+                'edit' => 'Edit Error message not defined',
+                'delete' => 'Delete Error message not defined',
+                'unique' => 'Unique Error message not defined',
+                'id' => 'id deve ser numérico'
+            )
+        );
+    }
+
+    private function getMessage($message) {
+        $messages = $this->getMessages();
+
+        list($type, $message) = explode('.', $message, 2);
+
+        if (!isset($messages[$type][$message])) {
+            return $message;
+        }
+
+        return $messages[$type][$message];
     }
 
     public function success($message)
     {
-        $this->setFlash($message, 'success');
+        $this->setFlash($this->getMessage("success.{$message}"), 'success');
     }
 
     public function error($message)
     {
-        $this->setFlash($message, 'error');
+        $this->setFlash($this->getMessage("error.{$message}"), 'error');
     }
 
     public function setFlash($message, $namespace = 'success')
