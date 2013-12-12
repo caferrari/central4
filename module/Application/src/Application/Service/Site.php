@@ -4,7 +4,7 @@ namespace Application\Service;
 
 use Common\AbstractService;
 
-class Orgao extends AbstractService
+class Site extends AbstractService
 {
 
 }

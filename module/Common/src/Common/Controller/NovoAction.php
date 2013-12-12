@@ -25,9 +25,6 @@ trait NovoAction
             } catch (\Exception $e) {
                 $this->error('insert');
             }
-
-            $form->setData($request->getPost());
-            $form->isValid();
         }
 
         return array('form' => $form);

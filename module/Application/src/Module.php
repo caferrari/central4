@@ -39,8 +39,8 @@ class Module
                 'application.usuario' => function ($sm) {
                     return new Service\Usuario($sm->get('Doctrine\ORM\EntityManager'));
                 },
-                'application.orgao' => function ($sm) {
-                    return new Service\Orgao($sm->get('Doctrine\ORM\EntityManager'));
+                'application.site' => function ($sm) {
+                    return new Service\Site($sm->get('Doctrine\ORM\EntityManager'));
                 }
             )
         );

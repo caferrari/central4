@@ -4,12 +4,6 @@ namespace Common;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
-/**
- *
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks
- */
 abstract class AbstractEntity
 {
 
@@ -66,10 +60,6 @@ abstract class AbstractEntity
         return $inputFilter->isValid();
     }
 
-    /**
-     * @ORM\PreUpdate
-     * @ORM\PrePersist
-     */
     public function validate()
     {
         if (!$this->isValid()) {

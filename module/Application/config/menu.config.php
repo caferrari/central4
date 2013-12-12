@@ -16,23 +16,23 @@ return array(
             'resource' => 'cadastros',
             'pages' => array(
                 array(
-                    'label' => 'Órgãos',
+                    'label' => 'Sites',
                     'route' => 'crud',
-                    'controller' => 'orgao',
+                    'controller' => 'site',
                     'action' => 'index',
-                    'resource' => 'orgao',
+                    'resource' => 'site',
                     'icon' => 'icon-building',
                     'pages' => array(
                         array(
-                            'label' => 'Adicionar Órgão',
+                            'label' => 'Adicionar Site',
                             'route' => 'crud',
-                            'controller' => 'orgao',
+                            'controller' => 'site',
                             'action' => 'novo',
                         ),
                         array(
-                            'label' => 'Editar Órgão',
+                            'label' => 'Editar Site',
                             'route' => 'crud',
-                            'controller' => 'orgao',
+                            'controller' => 'site',
                             'action' => 'editar',
                         )
                     )

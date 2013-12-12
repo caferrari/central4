@@ -23,8 +23,6 @@ class Usuario extends AbstractController
         $this->entity = '\Application\Entity\Usuario';
         $this->service = 'application.usuario';
         $this->editView = 'application/usuario/novo';
-
-        $this->messages['error']['unique'] = 'Já existe um usuário utilizando este email';
     }
 
     public function loginAction()
@@ -58,6 +56,23 @@ class Usuario extends AbstractController
         $auth = $this->getService('authservice');
         $auth->clearIdentity();
         return $this->redirect()->toRoute('login');
+    }
+
+    public function getMessages() {
+        return array(
+            'success' => array(
+                'insert' => 'Usuário inserido com sucesso',
+                'edit' => 'Usuário editado com sucesso',
+                'delete' => 'Usuário excluído com sucesso'
+            ),
+            'error' => array(
+                'insert' => 'Erro ao inserir usuário',
+                'edit' => 'Erro ao editar usuário',
+                'delete' => 'Erro ao excluir usuário',
+                'unique' => 'Já existe um usuário com este email',
+                'id' => 'id deve ser numérico'
+            )
+        );
     }
 
 }

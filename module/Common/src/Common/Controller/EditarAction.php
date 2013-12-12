@@ -8,25 +8,27 @@ trait EditarAction
     public function editarAction()
     {
 
-        $form = $this->getForm();
+        $id = $this->getRequest()->getQuery('id', false);
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-            $form->setData($request->getPost());
             try {
-                $form->validate();
-                $this->getService()->update($form->getData());
+                $this->getService()->update($request->getPost()->toArray());
                 $this->success('edit');
                 return $this->redirect()->toRoute('crud', array('controller' => $this->controller));
             } catch (\Exception $e) {
-                $this->error($e->getMessage());
+                $this->error('edit');
             }
         }
 
-        $id = $this->getRequest()->getQuery('id', false);
         if (is_numeric($id)) {
-            $entity = $this->getRepository()->find($id);
-            $this->form = $form->setData($entity->toArray());
+
+            $this->form = $this->getForm();
+
+            if (!$request->isPost()) {
+                $entity = $this->getRepository()->find($id);
+                $this->form->setData($entity->toArray());
+            }
 
             $children = $this->layout()->getChildren();
             return $this->render($this->editView);

@@ -1,0 +1,22 @@
+    <div class="btn-toolbar">
+        <a href="<?php echo $this->url('crud', array('controller' => 'site', 'action' => 'novo')) ?>" class="btn btn-primary">Adicionar</a>
+    </div>
+
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th width="80">Ações</th>
+            </tr>
+        </thead>
+        <?php foreach ($data as $site):
+        ?>
+        <tr>
+            <td><?= $site->nome ?></td>
+            <td>
+                <a href="<?php echo $this->url('crud', array('controller' => 'site', 'action' => 'editar', 'id' => $site->id)) ?>" class="btn btn-small" rel="tooltip" title="Editar"><i class="icon-edit"></i></a>
+                <a href="<?php echo $this->url('crud', array('controller' => 'site', 'action' => 'excluir', 'id' => $site->id)) ?>" class="btn btn-small btn-danger" rel="tooltip" title="Excluir"><i class="icon-remove"></i></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>

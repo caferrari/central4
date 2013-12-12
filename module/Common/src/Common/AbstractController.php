@@ -61,11 +61,20 @@ abstract class AbstractController extends AbstractActionController
     protected function getForm()
     {
         try {
-            return $this->getService($this->form);
+            $form = $this->getService($this->form);
         } catch (ServiceNotFoundException $e) {
             $di = new \Zend\Di\Di;
-            return $di->get($this->form);
+            $form = $di->get($this->form);
         }
+
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            $form->isValid();
+        }
+
+        return $form;
     }
 
     public function getData()

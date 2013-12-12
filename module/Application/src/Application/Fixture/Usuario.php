@@ -15,8 +15,7 @@ class Usuario extends AbstractFixture
         $data = array(
             'nome' => 'Administrador',
             'email' => 'admin@to.gov.br',
-            'senha' => 'admin123',
-            'tipo' => 'admin'
+            'senha' => 'admin123'
         );
 
         $entity = new UsuarioEntity($data);

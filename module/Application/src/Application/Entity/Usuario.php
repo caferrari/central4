@@ -63,12 +63,14 @@ class Usuario extends AbstractEntity
      */
     protected $salt;
 
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->sites = new \Doctrine\Common\Collections\ArrayCollection();
         parent::__construct($data);
     }
 
-    public function addSite(\Application\Entity\Site $site) {
+    public function addSite(\Application\Entity\Site $site)
+    {
         $this->sites->add($site);
     }
 

@@ -4,12 +4,6 @@ $form->prepare();
 
 <?= $this->form()->openTag($form); ?>
 
-<?php if (!$form->get('id')->getValue()): ?>
-<legend>Adicionar Usuário</legend>
-<?php else: ?>
-<legend>Editar Usuário</legend>
-<?php endif; ?>
-
 <?= $this->flashMessage(); ?>
 
 <?= $this->formHidden($form->get('id')); ?>
@@ -22,7 +16,7 @@ $form->prepare();
 
 <div class="control-group">
     <div class="controls">
-    <button class="btn">Salvar</button> ou <a href="">Voltar</a>
+    <button class="btn">Salvar</button> ou <a href="<?php echo $this->url('crud', array('controller' => 'usuario')) ?>">Voltar</a>
     </div>
 </div>
 

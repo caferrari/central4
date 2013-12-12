@@ -4,7 +4,7 @@ namespace Application\Filter;
 
 use Zend\InputFilter\InputFilter;
 
-class Orgao extends InputFilter
+class Site extends InputFilter
 {
 
     public function __construct()
@@ -37,7 +37,7 @@ class Orgao extends InputFilter
                     array(
                         'name' => 'NotEmpty',
                         'options' => array(
-                            'messages' => array('isEmpty' => 'Digite um nome para o órgão')
+                            'messages' => array('isEmpty' => 'Digite um nome para o site')
                         )
                     )
                 )
@@ -46,11 +46,26 @@ class Orgao extends InputFilter
 
         $this->add(
             array(
-                'name' => 'email',
-                'required' => false,
+                'name' => 'sigla',
+                'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim')
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array(
+                            'messages' => array('isEmpty' => 'Digite uma sigla para o site')
+                        )
+                    ),
+                    array(
+                        'name' => 'Regex',
+                        'options' => array(
+                            'pattern' => '@^[a-z0-9_-]{2,30}$@',
+                            'messages' => array('regexNotMatch' => 'Sigla inválida')
+                        )
+                    )
                 )
             )
         );

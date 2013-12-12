@@ -92,4 +92,22 @@ class UsuarioTest extends ServiceTestCase
         $this->assertInstanceOf('\Application\Entity\Usuario', $entity);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSeInsereUsuarioSemSenha()
+    {
+        $em = $this->getEm();
+        $service = new Usuario($em);
+
+        $data = array(
+            'nome' => 'Administrador',
+            'email' => 'bla@bla.com',
+            'senha' => ''
+        );
+
+        $entity = $service->insert($data);
+        $this->assertInstanceOf('\Application\Entity\Usuario', $entity);
+    }
+
 }

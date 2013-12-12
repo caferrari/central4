@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM,
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="site")
+ * @ORM\Table(name="site",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="un_site_sigla", columns={"sigla"})}
+ * )
+ * @ORM\HasLifecycleCallbacks
  */
 class Site extends AbstractEntity
 {
@@ -20,12 +23,6 @@ class Site extends AbstractEntity
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Entity\Orgao")
-     * @ORM\JoinColumn(name="orgao_id", referencedColumnName="id")
-     */
-    protected $orgao;
-
-    /**
      * @ORM\OneToMany(targetEntity="Application\Entity\UsuarioSite", mappedBy="sites")
      */
     protected $usuarios;
@@ -36,16 +33,27 @@ class Site extends AbstractEntity
     protected $nome;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="string", length=30)
      */
     protected $sigla;
 
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
         parent::__construct($data);
     }
 
-    public function addUsuario(\Application\Entity\Usuario $usuario) {
+    /**
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
+     */
+    public function validate()
+    {
+        parent::validate();
+    }
+
+    public function addUsuario(\Application\Entity\Usuario $usuario)
+    {
         $this->usuarios->add($usuario);
     }
 
