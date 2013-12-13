@@ -127,4 +127,12 @@ class Usuario extends AbstractEntity
         return $this->salt = $this->generateSalt();
     }
 
+    public function setIsAdmin($value) {
+        $this->isAdmin = !!$value;
+    }
+
+    public function setIsRevisor($value) {
+        $this->isRevisor = !!$value;
+    }
+
 }

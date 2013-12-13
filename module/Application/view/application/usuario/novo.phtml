@@ -10,7 +10,8 @@ $form->prepare();
 <?= $this->bootstrapRow($form->get('nome')); ?>
 <?= $this->bootstrapRow($form->get('email')); ?>
 <?= $this->bootstrapRow($form->get('senha')); ?>
-<?= $this->bootstrapRow($form->get('tipo')); ?>
+<?= $this->bootstrapRow($form->get('isAdmin')); ?>
+<?= $this->bootstrapRow($form->get('isRevisor')); ?>
 
 <?= $this->formHidden($form->get('security')); ?>
 

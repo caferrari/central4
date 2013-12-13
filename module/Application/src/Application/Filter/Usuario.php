@@ -101,6 +101,20 @@ class Usuario extends InputFilter
             )
         );
 
+        $this->add(
+            array(
+                'name' => 'isAdmin',
+                'required' => false
+            )
+        );
+
+        $this->add(
+            array(
+                'name' => 'isRevisor',
+                'required' => false
+            )
+        );
+
     }
 
 }

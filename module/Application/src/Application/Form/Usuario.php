@@ -50,7 +50,6 @@ class Usuario extends AbstractForm
             )
         );
 
-
         $this->add(
             array(
                 'name' => 'senha',
@@ -66,25 +65,34 @@ class Usuario extends AbstractForm
 
         $this->add(
             array(
-                'type' => 'Zend\Form\Element\Csrf',
-                'name' => 'security'
+                'name' => 'isAdmin',
+                'type' => 'checkbox',
+                'options' => array(
+                    'label' => 'Administrador',
+                    'checked_value' => true,
+                    'unchecked_value' => false
+                )
             )
         );
 
         $this->add(
             array(
-                'name' => 'tipo',
-                'type' => 'Zend\Form\Element\Select',
+                'name' => 'isRevisor',
+                'type' => 'checkbox',
                 'options' => array(
-                    'label' => 'Tipo',
-                    'value_options' => array(
-                        'admin' => 'Administrador',
-                        'admin-orgao' => 'Administrador de Órgão',
-                        'revisor' => 'Revisor',
-                        'atendente' => 'Atendente'
-                    )
+                    'label' => 'Revisor',
+                    'checked_value' => true,
+                    'unchecked_value' => false
                 )
             )
         );
+
+        $this->add(
+            array(
+                'type' => 'csrf',
+                'name' => 'security'
+            )
+        );
+
     }
 }
